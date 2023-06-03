@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css//index.css">
+    <title>tic-tac toe</title>
+</head>
+<body>
+    <main>
+        <div class="grid" data-id="grid">
+            <div class="turn" data-id="turn">
+                <i class="fa-solid fa-x turquoise">
+                    <p>Player 1, you are up!</p>
+                </i>
+            </div>
+            <div class="menu">
+                <button class="menu-btn" data-id="menu-button">Actions
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+
+                <div class="items border hidden" data-id="menu-popover">
+                    <button data-id="reset-btn">Reset</button>
+                    <button data-id="new-round-btn">New Round</button>
+                </div>
+            </div>
+
+            <div class="square shadow" id="1"></div>
+            <div class="square shadow" id="2"></div>
+            <div class="square shadow" id="3"></div>
+            <div class="square shadow" id="4"></div>
+            <div class="square shadow" id="5"></div>
+            <div class="square shadow" id="6"></div>
+            <div class="square shadow" id="7"></div>
+            <div class="square shadow" id="8"></div>
+            <div class="square shadow" id="9"></div>
+
+            <div class="score shadow" style="background-color: var(--turquoise)">
+                <p>Player 1</p>
+                <span data-id="player1-stats">0 wins</span>
+            </div>
+            <div class="score shadow" style="background-color: var(--light-gray)">
+                <p>Ties</p>
+                <span data-id="ties">0</span>
+            </div>
+            <div class="score shadow" style="background-color: var(--yellow)">
+                <p>Player 2</p>
+                <span data-id="ties">0 Wins</span>
+            </div>
+        </div>
+
+        <footer>
+            <p>
+                Original project by
+                <a href="#">romandev</a> and 
+                <a href="#">cherkunovdev</a>
+            </p>
+        </footer>
+    </main>
+</body>
+</html>
