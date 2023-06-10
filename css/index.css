@@ -29,8 +29,10 @@ body {
 }
 
 .hidden {
-    display: none !important;
+    /* display: none !important; */
+    transform: scale(0) !important; 
 }
+
 
 .yellow {
     color: var(--yellow);
@@ -46,6 +48,7 @@ body {
 
 .border {
     border: 1px solid rgba(211, 211, 211, 0.4) !important;
+    border-radius: 0.6rem;
 }
 
 button:hover {
@@ -128,6 +131,8 @@ button:hover {
     background-color: #203139;
     border-radius: 2px;
     padding: 10px;
+    transition: .5s ease;
+    transform-origin: top;
 }
 
 .items button {
