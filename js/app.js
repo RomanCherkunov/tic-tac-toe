@@ -1,3 +1,5 @@
+import View from "./view.js";
+
 const App = {
   // All of our selected elements
   $: {
@@ -6,7 +8,7 @@ const App = {
     resetBtn: document.querySelector("[data-id='reset-btn']"),
     newRoundBtn: document.querySelector("[data-id='new-round-btn']"),
     squares: document.querySelectorAll(".square"),
-    modal: document.querySelector('.modal'),
+    modal: document.querySelector(".modal"),
     modalText: document.querySelector("[data-id='modal-text']"),
     modalBtn: document.querySelector("[data-id='modal-btn']"),
     turn: document.querySelector("[data-id='turn']"),
@@ -17,8 +19,12 @@ const App = {
   },
 
   getGameStatus(moves) {
-    const p1Moves = moves.filter((move) => move.playerId === 1).map(move => +move.squareId)
-    const p2Moves = moves.filter((move) => move.playerId === 2).map(move => +move.squareId)
+    const p1Moves = moves
+      .filter((move) => move.playerId === 1)
+      .map((move) => +move.squareId);
+    const p2Moves = moves
+      .filter((move) => move.playerId === 2)
+      .map((move) => +move.squareId);
 
     const winnerPatterns = [
       [1, 2, 3],
@@ -31,21 +37,19 @@ const App = {
       [7, 8, 9],
     ];
 
-    let winner = null
+    let winner = null;
 
-    winnerPatterns.forEach(pattern => {
-      const p1Wins = pattern.every(v => p1Moves.includes(v))
-      const p2Wins = pattern.every(v => p2Moves.includes(v))
+    winnerPatterns.forEach((pattern) => {
+      const p1Wins = pattern.every((v) => p1Moves.includes(v));
+      const p2Wins = pattern.every((v) => p2Moves.includes(v));
 
-      if(p1Wins) winner = 1
-      if(p2Wins) winner = 2
-
-
-    })
+      if (p1Wins) winner = 1;
+      if (p2Wins) winner = 2;
+    });
 
     return {
-      status: moves.length === 9 || winner != null ? 'complete' : 'in-progress',
-      winner
+      status: moves.length === 9 || winner != null ? "complete" : "in-progress",
+      winner,
     };
   },
 
@@ -73,11 +77,11 @@ const App = {
       console.log("new round");
     }
 
-    App.$.modalBtn.addEventListener('click', () => {
-      App.state.moves = []
-      App.$.squares.forEach(el => el.replaceChildren())
-      App.$.modal.classList.add('hidden')
-    })
+    App.$.modalBtn.addEventListener("click", () => {
+      App.state.moves = [];
+      App.$.squares.forEach((el) => el.replaceChildren());
+      App.$.modal.classList.add("hidden");
+    });
 
     // TODO
     App.$.squares.forEach((square) => {
@@ -99,29 +103,29 @@ const App = {
           App.state.moves.length === 0
             ? 1
             : getOppositePlayer(lastMove.playerId);
-        const nextPlayer = getOppositePlayer(currentPlayer)
+        const nextPlayer = getOppositePlayer(currentPlayer);
 
         const icon = document.createElement("i");
         const img = document.createElement("img");
         const turnIcon = document.createElement("i");
         const turnImg = document.createElement("img");
 
-        const turnLabel = document.createElement('p')
-        turnLabel.innerText = `Player ${nextPlayer}, you are up!`
+        const turnLabel = document.createElement("p");
+        turnLabel.innerText = `Player ${nextPlayer}, you are up!`;
 
         if (currentPlayer === 1) {
           img.setAttribute("src", "./icons//close.svg");
-          App.$.turn.classList.add("yellow")
-          App.$.turn.classList.remove("turquoise")
+          App.$.turn.classList.add("yellow");
+          App.$.turn.classList.remove("turquoise");
           turnIcon.classList.add("gg-shape-circle");
         } else {
           icon.classList.add("gg-shape-circle");
-          App.$.turn.classList.add("turquoise")
-          App.$.turn.classList.remove("yellow")
-          turnIcon.classList.add('gg-close')
+          App.$.turn.classList.add("turquoise");
+          App.$.turn.classList.remove("yellow");
+          turnIcon.classList.add("gg-close");
         }
 
-        App.$.turn.replaceChildren(turnIcon, turnLabel)
+        App.$.turn.replaceChildren(turnIcon, turnLabel);
 
         App.state.moves.push({ squareId: +square.id, playerId: currentPlayer });
 
@@ -129,19 +133,19 @@ const App = {
         square.replaceChildren(icon);
 
         // Check winner
-        const game = App.getGameStatus(App.state.moves)
+        const game = App.getGameStatus(App.state.moves);
 
-        if(game.status === 'complete') {
-          App.$.modal.classList.remove('hidden')
+        if (game.status === "complete") {
+          App.$.modal.classList.remove("hidden");
 
-          let message =''
-          if(game.winner) {
-            message = `Player ${game.winner} wins!`
+          let message = "";
+          if (game.winner) {
+            message = `Player ${game.winner} wins!`;
           } else {
-            message = 'Tie game!'
+            message = "Tie game!";
           }
 
-          App.$.modalText.textContent = message
+          App.$.modalText.textContent = message;
         }
       });
     });
@@ -149,3 +153,10 @@ const App = {
 };
 
 window.addEventListener("load", App.init);
+
+function init() {
+  const view = new View();
+  console.log(view.$.turn);
+}
+
+window.addEventListener("load", init);
