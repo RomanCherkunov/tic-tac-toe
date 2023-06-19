@@ -70,7 +70,7 @@ button:hover {
     grid-column-end: 3;
     align-items: center;
     gap: 20px;
-    color: var(--yellow);
+    /* color: var(--yellow); */
 }
 
 .turn i {
@@ -156,6 +156,11 @@ button:hover {
     justify-content: center;
     align-items: center;
     font-size: 3rem;
+}
+
+.square > i {
+    width: 50%;
+    height: 50%;
 }
 
 .square:hover {
@@ -265,6 +270,7 @@ footer p {
     box-sizing: border-box;
     position: relative;
     display: block;
+    color: var(--turquoise);
     transform: scale(var(--ggs,1));
     width: 22px;
     height: 22px;
@@ -345,4 +351,16 @@ footer p {
     transform: rotate(-45deg);
     left: 4px;
     bottom: 2px
+}
+
+.gg-shape-circle {
+    box-sizing: border-box;
+    color: var(--yellow);
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 16px;
+    height: 16px;
+    border: 5px solid;
+    border-radius: 100px
 }
